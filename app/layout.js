@@ -23,9 +23,6 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
       >
         <main className="flex-1 overflow-auto">{children}</main>
-        <footer className="text-center py-4 text-sm text-gray-500">
-          &copy; Desenvolvido por Arthur Danielson - 2025
-        </footer>
       </body>
     </html>
   );
