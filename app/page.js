@@ -1,8 +1,9 @@
 "use client";
 
-import "dotenv";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
@@ -85,20 +86,65 @@ export default function Home() {
           role: "user",
           parts: [
             {
-              text: `Você é um gerador de documentação de código. Sua tarefa é reescrever qualquer código fornecido, adicionando o máximo de documentação possível (incluindo descrições de funções, parâmetros, retornos, estruturas de dados, fluxos e comportamentos relevantes).
+              text: `
+Você é um gerador automático de documentação de código-fonte. Sua função é analisar qualquer trecho de código fornecido e gerar uma documentação detalhada, clara e completa, ideal para desenvolvedores e profissionais técnicos.
 
-A documentação gerada deve ser salva em formato .docx, de forma clara, organizada e completa.
+Regras e Diretrizes:
+Entrada esperada: Apenas código-fonte.
 
-A linguagem da documentação não precisa ser a mesma linguagem do código — use a linguagem mais adequada ao público-alvo ou contexto (por padrão, use português claro e técnico).
-
-Importante:
-
-Se a entrada fornecida não for um código-fonte, responda com:
+Se a entrada não for código-fonte, responda com:
 "Desculpe, isso não me parece um código."
+Não realize nenhuma outra ação ou comentário.
 
-Não realize nenhuma outra ação além de gerar a documentação conforme acima.
+Objetivo: Reescrever o código fornecido com o máximo de documentação possível, em formato técnico organizado e salvo como um arquivo .md
 
-Não escreva NADA além da documentação gerada e formatada para .docx`,
+Especificações da Documentação:
+Linguagem da documentação:
+
+Use português técnico e claro como padrão.
+
+Adapte a linguagem se o público-alvo for conhecido.
+
+Formato de saída:
+
+Markdown formatado corretamente.
+
+Não inclua blocos de código Markdown (ou seja, não use crases ou ''').
+
+A documentação deve começar com um título nível 1 (#).
+
+Não inclua nenhum texto fora da documentação.
+
+Conteúdo da documentação:
+
+Descrição geral do propósito do código.
+
+Explicações completas para:
+
+Funções, métodos e classes.
+
+Parâmetros e seus tipos esperados.
+
+Valores de retorno e seus significados.
+
+Estruturas de dados utilizadas.
+
+Fluxos lógicos e interações entre componentes.
+
+Regras de negócio e comportamentos importantes.
+
+Comentários explicativos linha a linha, quando aplicável.
+
+Exemplos de uso, se forem úteis para a compreensão.
+
+Estilo da documentação:
+
+Clareza, precisão e completude são prioritários.
+
+Organização lógica em seções e subtítulos.
+
+Utilize listas, tabelas e marcações de destaque para facilitar a leitura.              
+              `,
             },
           ],
         },
@@ -214,7 +260,7 @@ Não escreva NADA além da documentação gerada e formatada para .docx`,
       {/* Layout fixo com título no topo */}
       <div className="flex flex-col h-full">
         {/* Título fixo no topo */}
-        <div className="w-full text-center py-4 bg-background border-b">
+        <div className="w-full text-center py-4 bg-background">
           <h1
             className={`font-bold ${hasMessages ? "text-[2vw]" : "text-[3vw]"}`}
           >
@@ -244,9 +290,90 @@ Não escreva NADA além da documentação gerada e formatada para .docx`,
                         : "bg-muted text-muted-foreground"
                     } ${message.isLoading ? "animate-pulse" : ""}`}
                   >
-                    <pre className="whitespace-pre-wrap break-words font-sans">
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        p: ({ node, ...props }) => (
+                          <p
+                            {...props}
+                            className="prose prose-sm dark:prose-invert max-w-none break-words"
+                          />
+                        ),
+                        pre: ({ node, ...props }) => (
+                          <pre
+                            {...props}
+                            className="overflow-x-auto p-4 bg-gray-900 text-gray-100 rounded-md my-3 shadow-md"
+                          />
+                        ),
+                        code: ({ node, inline, ...props }) =>
+                          inline ? (
+                            <code
+                              {...props}
+                              className="bg-gray-200 dark:bg-gray-100 text-black px-1 py-0.5 rounded text-sm"
+                            />
+                          ) : (
+                            <code
+                              {...props}
+                              className="font-mono text-[14px] bg-gray-900 text-gray-100 my-2"
+                            />
+                          ),
+                        img: ({ node, ...props }) => (
+                          <img
+                            {...props}
+                            className="max-w-full h-auto rounded"
+                          />
+                        ),
+                        table: ({ node, ...props }) => (
+                          <div className="overflow-x-auto">
+                            <table
+                              {...props}
+                              className="border-collapse text-sm my-2"
+                            />
+                          </div>
+                        ),
+                        h1: ({ node, ...props }) => (
+                          <h1
+                            {...props}
+                            className="text-xl font-bold mt-4 mb-2"
+                          />
+                        ),
+                        h2: ({ node, ...props }) => (
+                          <h2
+                            {...props}
+                            className="text-lg font-bold mt-3 mb-2"
+                          />
+                        ),
+                        h3: ({ node, ...props }) => (
+                          <h3
+                            {...props}
+                            className="text-md font-bold mt-3 mb-1"
+                          />
+                        ),
+                        ul: ({ node, ...props }) => (
+                          <ul {...props} className="list-disc pl-5 my-2" />
+                        ),
+                        ol: ({ node, ...props }) => (
+                          <ol {...props} className="list-decimal pl-5 my-2" />
+                        ),
+                        li: ({ node, ...props }) => (
+                          <li {...props} className="mb-1" />
+                        ),
+                        blockquote: ({ node, ...props }) => (
+                          <blockquote
+                            {...props}
+                            className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-2"
+                          />
+                        ),
+                        hr: ({ node, ...props }) => (
+                          <hr
+                            {...props}
+                            className="my-3 border-gray-300 dark:border-gray-600"
+                          />
+                        ),
+                      }}
+                    >
                       {message.text}
-                    </pre>
+                    </ReactMarkdown>
                   </div>
                 </div>
               ))}
@@ -261,7 +388,7 @@ Não escreva NADA além da documentação gerada e formatada para .docx`,
         </div>
 
         {/* Barra de input fixada na parte inferior */}
-        <div className="w-full p-4 border-t bg-background">
+        <div className="w-full p-4 bg-background">
           <form
             onSubmit={handleSubmit}
             className="flex gap-2 max-w-3xl mx-auto"
@@ -286,7 +413,7 @@ Não escreva NADA além da documentação gerada e formatada para .docx`,
               disabled={isLoading}
               className="h-[46px]" // Altura ajustada para combinar com o textarea (40px + 6px de padding)
             >
-              {isLoading ? "Enviando..." : "Enviar"}
+              {isLoading ? "Processando..." : "Enviar"}
             </Button>
           </form>
         </div>
