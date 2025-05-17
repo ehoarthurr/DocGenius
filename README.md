@@ -1,9 +1,7 @@
 
 # DocGenius
 
-ACESSE O VÍDEO DE DEMONSTRAÇÃO: 
-
-[![Assista o vídeo!](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/v663O19Dw-s)
+[![Assista o vídeo!](https://raw.githubusercontent.com/ehoarthurr/DocGenius/refs/heads/main/public/image.png)](https://youtu.be/v663O19Dw-s)
 
 Esse projeto foi feito com o objetivo de ser apresentado na Imersão IA 2025 da Alura, realizada nos dias 12 a 16 de maio.
 
