@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# DocGenius
 
-First, run the development server:
+ACESSE O VÍDEO DE DEMONSTRAÇÃO: 
 
+[![Assista o vídeo!](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/v663O19Dw-s)
+
+Esse projeto foi feito com o objetivo de ser apresentado na Imersão IA 2025 da Alura, realizada nos dias 12 a 16 de maio.
+
+O DocGenius se propõe a gerar documentações e explicar o código que for inserido no chat, mostrando o que cada parte faz em específico e sua performance junto ao resto do código.
+
+
+
+## Demonstração
+
+Para acessar o projeto acesse o link abaixo:
+
+https://doc-genius-phi.vercel.app/
+
+## Instalação
+
+Caso queira baixar o projeto e instalá-lo em sua máquina... siga os seguintes passos:
+
+1 . Clone o repositório na pasta desejada com o seguinte comando:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://github.com/ehoarthurr/DocGenius.git
 ```
+2 . Acesse o diretório clonado e rode no seu terminal:
+```bash
+  npm install
+  npm run dev
+```
+3. Pronto! Após o servidor do Next.js iniciar acesse http://localhost:3000/ e desfrute do DocGenius!
+## Autores
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [@ehoarthurr](https://www.github.com/ehoarthurr)

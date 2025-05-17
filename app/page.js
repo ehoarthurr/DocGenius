@@ -288,90 +288,96 @@ Utilize listas, tabelas e marcações de destaque para facilitar a leitura.
                         : "bg-muted text-muted-foreground"
                     } ${message.isLoading ? "animate-pulse" : ""}`}
                   >
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}
-                      components={{
-                        p: ({ node, ...props }) => (
-                          <p
-                            {...props}
-                            className="prose prose-sm dark:prose-invert max-w-none break-words"
-                          />
-                        ),
-                        pre: ({ node, ...props }) => (
-                          <pre
-                            {...props}
-                            className="overflow-x-auto p-4 bg-gray-900 text-gray-100 rounded-md my-3 shadow-md"
-                          />
-                        ),
-                        code: ({ node, inline, ...props }) =>
-                          inline ? (
-                            <code
+                    {message.sender === "user" ? (
+                      <pre className="whitespace-pre-wrap font-sans break-words">
+                        {message.text}
+                      </pre>
+                    ) : (
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          p: ({ node, ...props }) => (
+                            <p
                               {...props}
-                              className="bg-gray-200 dark:bg-gray-100 text-black px-1 py-0.5 rounded text-sm"
-                            />
-                          ) : (
-                            <code
-                              {...props}
-                              className="font-mono text-[14px] bg-gray-900 text-gray-100 my-2"
+                              className="prose prose-sm dark:prose-invert max-w-none break-words"
                             />
                           ),
-                        img: ({ node, ...props }) => (
-                          <img
-                            {...props}
-                            className="max-w-full h-auto rounded"
-                          />
-                        ),
-                        table: ({ node, ...props }) => (
-                          <div className="overflow-x-auto">
-                            <table
+                          pre: ({ node, ...props }) => (
+                            <pre
                               {...props}
-                              className="border-collapse text-sm my-2"
+                              className="overflow-x-auto p-4 bg-gray-900 text-gray-100 rounded-md my-3 shadow-md"
                             />
-                          </div>
-                        ),
-                        h1: ({ node, ...props }) => (
-                          <h1
-                            {...props}
-                            className="text-xl font-bold mt-4 mb-2"
-                          />
-                        ),
-                        h2: ({ node, ...props }) => (
-                          <h2
-                            {...props}
-                            className="text-lg font-bold mt-3 mb-2"
-                          />
-                        ),
-                        h3: ({ node, ...props }) => (
-                          <h3
-                            {...props}
-                            className="text-md font-bold mt-3 mb-1"
-                          />
-                        ),
-                        ul: ({ node, ...props }) => (
-                          <ul {...props} className="list-disc pl-5 my-2" />
-                        ),
-                        ol: ({ node, ...props }) => (
-                          <ol {...props} className="list-decimal pl-5 my-2" />
-                        ),
-                        li: ({ node, ...props }) => (
-                          <li {...props} className="mb-1" />
-                        ),
-                        blockquote: ({ node, ...props }) => (
-                          <blockquote
-                            {...props}
-                            className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-2"
-                          />
-                        ),
-                        hr: ({ node, ...props }) => (
-                          <hr
-                            {...props}
-                            className="my-3 border-gray-300 dark:border-gray-600"
-                          />
-                        ),
-                      }}
-                    >
-                      {message.text}
-                    </ReactMarkdown>
+                          ),
+                          code: ({ node, inline, ...props }) =>
+                            inline ? (
+                              <code
+                                {...props}
+                                className="bg-gray-200 dark:bg-gray-100 text-black px-1 py-0.5 rounded text-sm"
+                              />
+                            ) : (
+                              <code
+                                {...props}
+                                className="font-mono text-[14px] bg-gray-900 text-gray-100 my-2"
+                              />
+                            ),
+                          img: ({ node, ...props }) => (
+                            <img
+                              {...props}
+                              className="max-w-full h-auto rounded"
+                            />
+                          ),
+                          table: ({ node, ...props }) => (
+                            <div className="overflow-x-auto">
+                              <table
+                                {...props}
+                                className="border-collapse text-sm my-2"
+                              />
+                            </div>
+                          ),
+                          h1: ({ node, ...props }) => (
+                            <h1
+                              {...props}
+                              className="text-xl font-bold mt-4 mb-2"
+                            />
+                          ),
+                          h2: ({ node, ...props }) => (
+                            <h2
+                              {...props}
+                              className="text-lg font-bold mt-3 mb-2"
+                            />
+                          ),
+                          h3: ({ node, ...props }) => (
+                            <h3
+                              {...props}
+                              className="text-md font-bold mt-3 mb-1"
+                            />
+                          ),
+                          ul: ({ node, ...props }) => (
+                            <ul {...props} className="list-disc pl-5 my-2" />
+                          ),
+                          ol: ({ node, ...props }) => (
+                            <ol {...props} className="list-decimal pl-5 my-2" />
+                          ),
+                          li: ({ node, ...props }) => (
+                            <li {...props} className="mb-1" />
+                          ),
+                          blockquote: ({ node, ...props }) => (
+                            <blockquote
+                              {...props}
+                              className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-2"
+                            />
+                          ),
+                          hr: ({ node, ...props }) => (
+                            <hr
+                              {...props}
+                              className="my-3 border-gray-300 dark:border-gray-600"
+                            />
+                          ),
+                        }}
+                      >
+                        {message.text}
+                      </ReactMarkdown>
+                    )}
                   </div>
                 </div>
               ))}
@@ -380,7 +386,8 @@ Utilize listas, tabelas e marcações de destaque para facilitar a leitura.
             <div className="h-full flex items-center justify-center flex-col">
               <h1 className="font-bold text-[3vw] mb-4">DocGenius</h1>
               <p className="text-muted-foreground text-center">
-                Insira seu código na área abaixo e pressione Enter para gerar a documentação.
+                Insira seu código na área abaixo e pressione Enter para gerar a
+                documentação.
               </p>
             </div>
           )}
