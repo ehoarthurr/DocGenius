@@ -28,6 +28,13 @@ Caso queira baixar o projeto e instalá-lo em sua máquina... siga os seguintes 
   npm install
   npm run dev
 ```
+
+3 . Crie um arquivo ```.env.local``` e adicione sua chave de [API do Google AI Studio](https://aistudio.google.com/apikey), como no exemplo:
+
+```bash
+NEXT_PUBLIC_GEMINI_API_KEY={SUA_CHAVE_AQUI}
+```
+
 3. Pronto! Após o servidor do Next.js iniciar acesse http://localhost:3000/ e desfrute do DocGenius!
 ## Autores
 
