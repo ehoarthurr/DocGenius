@@ -257,16 +257,14 @@ Utilize listas, tabelas e marcações de destaque para facilitar a leitura.
 
   return (
     <div className="relative h-full flex flex-col">
-      {/* Layout fixo com título no topo */}
+      {/* Layout flexível com título no centro ou topo */}
       <div className="flex flex-col h-full">
-        {/* Título fixo no topo */}
-        <div className="w-full text-center py-4 bg-background">
-          <h1
-            className={`font-bold ${hasMessages ? "text-[2vw]" : "text-[3vw]"}`}
-          >
-            DocGenius
-          </h1>
-        </div>
+        {hasMessages ? (
+          /* Título fixo no topo quando há mensagens */
+          <div className="w-full text-center py-4 bg-background">
+            <h1 className="font-bold text-[2vw]">DocGenius</h1>
+          </div>
+        ) : null}
 
         {/* Área de conteúdo principal - chat messages */}
         <div
@@ -379,9 +377,10 @@ Utilize listas, tabelas e marcações de destaque para facilitar a leitura.
               ))}
             </div>
           ) : (
-            <div className="h-full flex items-center justify-center">
+            <div className="h-full flex items-center justify-center flex-col">
+              <h1 className="font-bold text-[3vw] mb-4">DocGenius</h1>
               <p className="text-muted-foreground text-center">
-                Insira seu código ou faça o upload de um arquivo
+                Insira seu código na área abaixo e pressione Enter para gerar a documentação.
               </p>
             </div>
           )}
@@ -395,7 +394,7 @@ Utilize listas, tabelas e marcações de destaque para facilitar a leitura.
           >
             <textarea
               ref={textareaRef}
-              placeholder="Insira o seu código..."
+              placeholder="Seu código aqui..."
               className="flex-1 min-h-[40px] px-4 py-3 rounded-md border border-input bg-background resize-none"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
@@ -416,6 +415,9 @@ Utilize listas, tabelas e marcações de destaque para facilitar a leitura.
               {isLoading ? "Processando..." : "Enviar"}
             </Button>
           </form>
+        </div>
+        <div className="mb-2 text-center text-muted-foreground text-sm">
+          &copy; Desenvolvido por Arthur Danielson - 2025
         </div>
       </div>
     </div>
