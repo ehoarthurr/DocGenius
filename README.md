@@ -5,7 +5,7 @@
 
 Esse projeto foi feito com o objetivo de ser apresentado na Imersão IA 2025 da Alura, realizada nos dias 12 a 16 de maio.
 
-O DocGenius se propõe a gerar documentações e explicar o código que for inserido no chat, mostrando o que cada parte faz em específico e sua performance junto ao resto do código.
+O DocGenius se propõe a gerar documentações e explicar o código que for inserido no chat, mostrando o que cada parte faz em específico e sua performance junto ao resto do código. Tudo isso usando a melhor IA do mundo, o Gemini!
 
 
 
